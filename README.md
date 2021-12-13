@@ -27,25 +27,81 @@ SSL  (Secure Sockets Layer)
 OpenSSL is a software library for applications that secure communications over computer networks against eavesdropping or need to identify the party at the other end.
 It contains an open-source implementation of the SSL and TLS protocols. The core library, written in C programming language, implements basic cryptographic functions and provides various utility functions.
 
-### More about openSSL
-
-OpenSSL supports a number of different cryptographic algorithms:
-Supported Ciphers
-AES, Blowfish, Camella, Cacha20, Poly1305, SEED, CAST-128, DES, IDEA, RC2, RC4, RC5, Triple DES, GOST 28147–89, SM4
-Cryptographic hash functions
-MD5, MD4, MD2, SHA-1, SHA-2, SHA-3, RIPEMD-160, MDC-2, GOST R 34.11–94,BLAKE2, Whirlpool, SM3
-Public-key cryptography
-RSA, DSA, Diffie-Hellman key exchange, Elliptic curve, X25519, Ed25519, Ed448, GOST R 34.10–2001, SM2
-Certificates
-X.509V3 ( encoding/decoding ASN1 and PEM )
 
 ### CMD 
 
-
-encrypt the "file" with "aes-128-cbc" algorithm and put the result in "h1"
-```
-openssl enc -aes-128-cbc -in file -out h1
+- Encrypt the "file" with "aes-128-cbc" algorithm and put the result in "file.enc"
+```ubuntu
+openssl enc -aes-128-cbc -in file -out file.enc
 
 // Apply the algoritm 2 times
-openssl enc -aes-128-cbc -iter 2 -in file -out h1
+
+openssl enc -aes-128-cbc -iter 2 -in file -out file.enc
 ```
+
+- Decrypt 
+```
+openssl ecn -d -aes-128-cbc -in file.enc -out filerestored
+
+openssl ecn -d -aes-128-cbc  -iter 2 -in file.enc -out filerestored
+```
+
+- Generate RSA Key: 
+
+```
+openssl genrsa -out mykey 2048
+
+```
+- Generate RSA params: 
+
+```
+openssl rsa -in mykey -text -noout 
+```
+
+-noout : print the output in the terminal 
+
+- Generate a public key from a private key 
+
+```
+openssl rsa -in mykey -pubout -out pub 
+```
+
+- Private Key Encryption :
+**des** : algorithm
+```
+openssl rsa -in mykey -des -out mykey.enc 
+```
+-  Encrypt with public key 
+```
+openssl rsault -encrypt -pubin -inkey PUB -in file -out file.enc 
+```
+- Decrypt 
+```
+openssl rsautl -decrypt -inkey mykey.enc -in file -out rsa.enc 
+```
+
+### Signature 
+
+- Sign with the private key 
+```
+openssl rsault -sign -inkey myKey.enc -in file -out fileRSA.sign 
+```
+
+- Verify signature 
+```
+openssl rsault -verify -pubin -inkey PUB -in fileRSA.sign
+```
+
+- Encrypt + Sign 
+
+```
+openssl dgst -sha256 -verify PUB -signature fileHashSign file 
+```
+
+### Certificate 
+
+Digital Certificates are verifiable small data files that contain identity credentials to help websites, people, and devices represent their authentic online identity.
+
+
+An SSL Certificate is a popular type of Digital Certificate that binds the ownership details of a web server to cryptographic keys. These keys are used in the SSL/TLS protocol to activate a secure session between a browser and the web server hosting the SSL Certificate.
+
