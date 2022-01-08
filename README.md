@@ -97,6 +97,33 @@ gpg --gen-key
 ```
 gpg --list -keys
 ```
+- Export a public key 
+```
+gpg -o KEY -a --export <KeyID> 
+```
+
+- Import Key
+```
+gpg --import KEY
+```
+- Encryption 
+```
+gpg -o file.enc -a -r <publicKey> -encrypt file
+```
+- Sign 
+```
+gpg -o file.signed --sign-file
+```
+- Verify a signature 
+```
+gpg --verify file.signed 
+```
+
+- Decrypt 
+```
+gpg -o file --decrypt file.enc
+```
+
 
 |Advantages ++ |Disadvantages -- |
 |---|---|
@@ -125,7 +152,11 @@ Hash is used to garantee Integrity : We use non-bijective functions to hash the 
 Examples of Hash functions : 
 - sha, sha256, md5 
 
-
+- Hash a file 
+```
+asc25sum file
+md5sum file
+```
 ## OpenSSL
 
 ### Definition 
