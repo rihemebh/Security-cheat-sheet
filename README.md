@@ -198,10 +198,10 @@ M = ![\Large C^d](https://latex.codecogs.com/svg.latex?\Large&space;C^d) mod N
 DLP : Discrete logarithm problem : find s so that x = g^s mod m 
 
 **Public infos**: 
-
+//  to be continued
 ### ELGamal
 DLP : Discrete logarithm problem 
-
+// to be continued
 
 ## Hash
 Hash is used to garantee Integrity : We use non-bijective functions to hash the message 
