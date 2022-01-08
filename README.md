@@ -155,7 +155,7 @@ gpg -o file --decrypt file.enc
 |Less number of keys||
 
 
-#### Needham-Schroeder
+### Needham-Schroeder
 Authentication Protocole 
 
 <img src="https://github.com/rihemebh/Security-cheat-sheet/blob/main/The-Needham-Schroeder-Lowe-protocol-with-public-keys.png" /> 
