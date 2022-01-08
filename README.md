@@ -196,9 +196,9 @@ Examples of Hash functions : sha, sha256, md5
 
 - Hash a file 
 ```
-asc25sum file
-md5sum file
-sha
+$ asc25sum file
+$ md5sum file
+$ sha256sum file
 ```
 ## OpenSSL
 
