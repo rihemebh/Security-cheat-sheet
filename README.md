@@ -1,8 +1,9 @@
 # Security
-- Before we start 
+- [0. Before we start](#before-we-start)
 - [1. Encryption](#encryption)
     - [1.1 Symmetric Encryption](#symmetric-encryption)
     - [1.2 Asymmetric Encryption](#asymmetric-encryption)
+      - [1.2.0 Needham-Schroeder](#needham-schroeder)
       - [1.2.1 RSA](#rsa)
       - [1.2.2 Diffie Hellman (DH)](#dh)
       - [1.2.3 ELGamal](#elgamal)
@@ -97,7 +98,8 @@ Examples of Hash functions :
 |Less number of keys||
 
 
-#### Needham-Schroeder: Authentication Protocole 
+#### Needham-Schroeder
+Authentication Protocole 
 
 #### RSA
 NP-complete problem
