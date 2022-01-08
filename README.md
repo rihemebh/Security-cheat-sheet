@@ -87,9 +87,16 @@ gpg -d <filename>
 ### Asymmetric Encryption
 Use public keys for encryption and private keys for decryption <br/>
 
-Examples of Hash functions : 
-- sha, sha256, md5 
+- Generate Keys 
+```
+gpg --full-generate-key
+gpg --gen-key
+```
 
+- Get the Key List 
+```
+gpg --list -keys
+```
 
 |Advantages ++ |Disadvantages -- |
 |---|---|
@@ -115,7 +122,8 @@ DLP : Discrete logarithm problem
 ## Hash
 Hash is used to garantee Integrity : We use non-bijective functions to hash the message 
 
-
+Examples of Hash functions : 
+- sha, sha256, md5 
 
 
 ## OpenSSL
