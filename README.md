@@ -1,18 +1,120 @@
 # Security
- - [1. Encryption](#encryption)
+- Before we start 
+- [1. Encryption](#encryption)
     - [1.1 Symmetric Encryption](#symmetric-encryption)
     - [1.2 Asymmetric Encryption](#asymmetric-encryption)
+      - [1.2.1 RSA](#rsa)
+      - [1.2.2 Diffie Hellman (DH)](#dh)
+      - [1.2.3 ELGamal](#elgamal)
     
- - [2. Hash](#hash)
-
+- [2. Hash](#hash)
 - [3. OpenSSL](#openssl)
+## Before we start 
+### Some important notions
+|name|description|
+|---|---|
+|Identification|Who are you ?|
+|Authentication|Prove it|
+|Authorization|Do you have the right to do something ?|
+|Audit| What did you do ?|
+|FootPrint|Recognition|
+|Integrity|Ensuring that information cannot be changed|
+|Confidentiality|Ensuring that information can be accessed (read) only by authorized persons|
+
+### Attacks 
+|Attack|Description|Example|
+|---|---|---|
+|Birthday Attack|Birthday attacks are made against hash algorithms that are used to verify the integrity of a message, software or digital signature. a hashed message has a fixed length (independent from the input length) that is unique for this message. this attack refers to the probability of finding two random messages that has the same Hash so the attacker can safely replace the message by his own one|
+|Password attack|Trying to guess the password or having a databse of passwords called dictionnary|- **Brute Force** : using a random approach by trying different passwords and hoping that one work Some logic can be applied by trying passwords related to the person’s name, job title, hobbies or similar items. <br/> - **Dictionary attack**: dictionary of common passwords is used to attempt to gain access to a user’s computer and network. One approach is to copy an encrypted file that contains the passwords, apply the same encryption to a dictionary of commonly used passwords, and compare the results.|
+|Man in the middle|occurs when a hacker inserts itself between the communications of a client and a server|Session hijacking <br/> <img src="https://github.com/rihemebh/Security-cheat-sheet/blob/main/mitm%201.PNG" /> <br/> <img src="https://github.com/rihemebh/Security-cheat-sheet/blob/main/mitm%202.PNG" />|
+|SQL Injection|SQL commands are inserted into data-plane input (for example, instead of the login or password) in order to run predefined SQL commands|“SELECT * FROM users WHERE account = ‘’ or ‘1’ = ‘1’;”<br/> Because ‘1’ = ‘1’ always evaluates to TRUE, the database will return the data for all users instead of just a single user.|
+|Cross-site scripting (XSS)|Use third-party web resources to run scripts in the victim’s web browser or scriptable application|<img src="https://github.com/rihemebh/Security-cheat-sheet/blob/main/xss.PNG"  />| 
+
+
+
+### Frequently used CMDs
+``gpg`` :  is the cmd for encryption 
+- Get Hostname 
+```
+hostname -I
+```
+- Connect remotely
+```
+ssh <username>@<hostname>
+```
+- Secure copy : 
+```
+scp <filename> <username>@<hostname>:<path>
+```
 
 ## Encryption
+Encryption is used to garantee Confidentiality 
 
 ### Symmetric Encryption
+Use one shared encryption key between sender and receiver 
+- Encrypt the file : 
+   - Binary format (default)
+     ```
+     gpg -c <filename>
+     ```
+   - ASCII format 
+     ```
+     gpg -c --armor(or -a) <filename>
+     ```
+- Get all the algos 
+```
+ gpg --version 
+```
+Examples of symmetric algorithms: <br/>
+AES (Advanced Encryption Standard), DES (Data Encryption Standard), IDEA (International Data Encryption Algorithm),RC4/5/6 (Rivest Cipher 4/5/6)
+
+- Encrypt the file and specify the algo (cipher)
+```
+gpg -c -a --cipher-algo <filename>
+```
+- Decrypt 
+```
+gpg -d <filename>
+```
+
+|Advantages ++ |Disadvantages -- |
+|---|---|
+|Fast|non secure key|
+|-|Large number of keys|
+|-|Without signature|
+
 ### Asymmetric Encryption
+Use public keys for encryption and private keys for decryption <br/>
+
+Examples of Hash functions : 
+- sha, sha256, md5 
+
+
+|Advantages ++ |Disadvantages -- |
+|---|---|
+|Secured|Slow|
+|Signature||
+|Less number of keys||
+
+
+#### Needham-Schroeder: Authentication Protocole 
+
+#### RSA
+NP-complete problem
+#### DH
+DLP : Discrete logarithm problem 
+
+- Problem ? 
+two persons 
+#### ELGamal
+DLP : Discrete logarithm problem 
+
 
 ## Hash
+Hash is used to garantee Integrity : We use non-bijective functions to hash the message 
+
+
+
 
 ## OpenSSL
 
@@ -67,7 +169,6 @@ openssl rsa -in mykey -pubout -out pub
 ```
 
 - Private Key Encryption :
-**des** : algorithm
 ```
 openssl rsa -in mykey -des -out mykey.enc 
 ```
@@ -166,4 +267,15 @@ openssl x509 -req -in gl4.dem out gl4.cert -CA INSAT.cert -CAkey INSAT.key -CAcr
 openssl pkcs12 -export -out gl4.pfx -in gl4.cert -inkey gl4.key -name "certificat de gl4"
 ```
 => pkcs12 : put the certificate and the keys in the same file "gl4.pfx" so you can import it in the browser
+
+- Import it
+
+|preference -> certificate manager -> my Certificates -> import |
+|---|
+
+- Add Authority
+
+| preference -> certificate manager -> Authorities -> import -> choose INSAT.cert |
+|---|
+
 
