@@ -128,7 +128,7 @@ Goal:
 - **INSAT** will verify this request and generate a certificate 
 - Now **INSAT** is the authotrity of **GL4**
 
-
+----------------------------------------------------------------------------
 
 - Create RSA keys for INSAT and put it in INSAT.key 
 ```
