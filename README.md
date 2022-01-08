@@ -108,6 +108,8 @@ openssl dgst -sha256 -verify PUB -signature fileHashSign file
 
 - Certification Authority issues digital certificates
 
+----------------------------------------------------------------------------
+
 - Get the Certification of the www.google.com website: 
 ```
 openssl s_client www.google.com:443
@@ -120,13 +122,15 @@ openssl x509 -in google.cert -subject -issuer -noout
 ```
 => google trust
 
+----------------------------------------------------------------------------
+
 
 Goal:
 - Create a certification authority called "**INSAT**"
 - Create a certification for INSAT
 - **GL4** will ask a certification from **INSAT** 
 - **INSAT** will verify this request and generate a certificate 
-- Now **INSAT** is the authotrity of **GL4**
+- Now **INSAT** is the authority of **GL4**
 
 ----------------------------------------------------------------------------
 
