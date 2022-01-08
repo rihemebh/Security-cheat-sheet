@@ -183,9 +183,8 @@ NP-complete problem
 **Parameters**: 
 1. choose 2 numbers p & q 
 2. N= p*q
-3. Find L between 1 and N that are coprime with N : L = (p-1)*(q-1)
-4. Generate the public Key: (e,N) 
--- e is between 1 and L and coprime with N and L
+3. L = (p-1)*(q-1)
+4. Generate the public Key (e,N): e is between 1 and L and coprime with N and L
 5. private key (d,N) : d*e mod L =1 
 
 
