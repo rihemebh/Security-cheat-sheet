@@ -107,7 +107,7 @@ NP-complete problem
 DLP : Discrete logarithm problem 
 
 - Problem ? 
-two persons 
+
 #### ELGamal
 DLP : Discrete logarithm problem 
 
