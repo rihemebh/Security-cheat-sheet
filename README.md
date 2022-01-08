@@ -2,6 +2,7 @@
 - [0. Before we start](#before-we-start)
 - [1. Encryption](#encryption)
     - [1.1 Symmetric Encryption](#symmetric-encryption)
+       - [1.1.0 Feistel](#feistel)
     - [1.2 Asymmetric Encryption](#asymmetric-encryption)
       - [1.2.0 Needham-Schroeder](#needham-schroeder)
       - [1.2.1 RSA](#rsa)
@@ -84,6 +85,8 @@ gpg -d <filename>
 |-|Large number of keys|
 |-|Without signature|
 
+#### Feistel 
+- It's a block cipher
 ### Asymmetric Encryption
 Use public keys for encryption and private keys for decryption <br/>
 
