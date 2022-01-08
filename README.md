@@ -100,8 +100,66 @@ openssl dgst -sha256 -verify PUB -signature fileHashSign file
 
 ### Certificate 
 
-Digital Certificates are verifiable small data files that contain identity credentials to help websites, people, and devices represent their authentic online identity.
+- Digital Certificates are verifiable small data files that contain identity credentials to help websites, people, and devices represent their authentic online identity.
+- Digital certificates cover three main uses: 
+     - Authentication: used to validate the identity of issuers as part of an authentication process, a crucial element of computer network security.
+     - Signing: sed to sign a document or a file and to guarantee its integrity
+     - Encryption: Garantee the security and integrity of information exchanged between a website and a browser, by means of a cryptographic key enabling a secure session to be activated (HTTPS protocol)
+
+- Certification Authority issues digital certificates
+
+- Get the Certification of the www.google.com website: 
+```
+openssl s_client www.google.com:443
+```
+
+- Get the authority of a certification : 
+<br/> google.cert is the file that contains google certification : output of the above cmd
+```
+openssl x509 -in google.cert -subject -issuer -noout
+```
+=> google trust
 
 
-An SSL Certificate is a popular type of Digital Certificate that binds the ownership details of a web server to cryptographic keys. These keys are used in the SSL/TLS protocol to activate a secure session between a browser and the web server hosting the SSL Certificate.
+Goal:
+- Create a certification authority called "**INSAT**"
+- Create a certification for INSAT
+- **GL4** will ask a certification from **INSAT** 
+- **INSAT** will verify this request and generate a certificate 
+- Now **INSAT** is the authotrity of **GL4**
+
+
+
+- Create RSA keys for INSAT and put it in INSAT.key 
+```
+openssl genrsa -des3 -out INSAT.key 3072
+```
+
+- Create a certification for INSAT
+```
+openssl req -new -x509 -days 730 -key INSAT.key -out INSAT.cert
+```
+=> In this certificate INSAT is the subject and issuer : **Self Signed Certificate**
+
+- Create keys for GL4
+```
+openssl genrsa -des3 -out gl4.key 3072
+```
+- Create request for a certiif from INSAT 
+```
+openssl req -new  -key gl4.key -out gl4.req 
+```
+- Generate a Certificate for GL4: 
+```
+openssl x509 -req -in gl4.req -out gl4.cert -CA INSAT.cert -CAKey INSAT.key -CAcreateserial -CAserial gl4.srl
+```
+- Send the request 
+```
+openssl x509 -req -in gl4.dem out gl4.cert -CA INSAT.cert -CAkey INSAT.key -CAcreateserial -gl4.srl
+```
+- Export the certificate 
+```
+openssl pkcs12 -export -out gl4.pfx -in gl4.cert -inkey gl4.key -name "certificat de gl4"
+```
+=> pkcs12 : put the certificate and the keys in the same file "gl4.pfx" so you can import it in the browser
 
