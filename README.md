@@ -230,7 +230,7 @@ g: generator of Gq <br/>
 
 1. D(u,v) = v/u^k = m 
 
- Hash
+# Hash
 Hash is used to garantee Integrity : We use non-bijective functions to hash the message. <br/>
 Whatever the size of the real message, the size of a hash message is always the same.  <br/>
 **Examples of Hash functions** : sha, sha256, md5  <br/>
