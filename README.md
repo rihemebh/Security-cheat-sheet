@@ -11,8 +11,8 @@
     
 - [2. Hash](#hash)
 - [3. OpenSSL](#openssl)
-## Before we start 
-### Some important notions
+# Before we start 
+## Some important notions
 |name|description|
 |---|---|
 |Identification|Who are you ?|
@@ -23,7 +23,7 @@
 |Integrity|Ensuring that information cannot be changed|
 |Confidentiality|Ensuring that information can be accessed (read) only by authorized persons|
 
-### Attacks 
+## Attacks 
 |Attack|Description|Example|
 |---|---|---|
 |Birthday Attack|It is made against the Hash algorithms. (Belongs to a class of brute force)  <br/> All hashed messages have a fixed length (independent from the input length) and they unique for that message. this attack refers to the probability of finding two random messages m1 and m2 that has the same Hash h(m1) = h(m2) so the attacker can safely replace the message by his own one|What is the relation with the birthday: <br/> Since we have a finite number of days in one year (365) there is a big chance to have 2 persons with the same birthday in a finite number of persons.|
@@ -34,7 +34,7 @@
 
 
 
-### Frequently used CMDs
+## Frequently used CMDs
 ``gpg`` :  is the cmd for encryption 
 - Get Hostname 
 ```
@@ -49,10 +49,10 @@ ssh <username>@<hostname>
 scp <filename> <username>@<hostname>:<path>
 ```
 
-## Encryption
+# Encryption
 Encryption is used to garantee Confidentiality 
 
-### Symmetric Encryption
+## Symmetric Encryption
 Use one shared encryption key between sender and receiver 
 - Encrypt the file : 
    - Binary format (default)
@@ -85,7 +85,7 @@ gpg -d <filename>
 |-|Large number of keys|
 |-|Without signature|
 
-#### Feistel 
+### Feistel 
 - It's a a block cipher
 
 
@@ -107,7 +107,7 @@ We could repeat this algo as many as we need if we want to increase the security
 The security also increases when the block is larger and the round function is more complex, but it may decrease the speed of encryption and decryption.
 
 
-### Asymmetric Encryption
+## Asymmetric Encryption
 Use public keys for encryption and private keys for decryption <br/>
 
 - Generate Keys 
@@ -155,7 +155,7 @@ gpg -o file --decrypt file.enc
 |Less number of keys||
 
 
-### Needham-Schroeder
+## Needham-Schroeder
 Authentication Protocole 
 
 <img src="https://github.com/rihemebh/Security-cheat-sheet/blob/main/The-Needham-Schroeder-Lowe-protocol-with-public-keys.png" /> 
@@ -177,7 +177,7 @@ Authentication Protocole
 This algo could easly be attacked by the Man in the midlle  
 
 
-### RSA
+## RSA
 NP-complete problem 
 
 **Parameters**: 
@@ -193,7 +193,7 @@ NP-complete problem
 
 **Decryption** :
 M = ![\Large C^d](https://latex.codecogs.com/svg.latex?\Large&space;C^d) mod N
-### DH
+## DH
 DLP : Discrete logarithm problem : find s so that x = g^s mod m 
 
 
@@ -205,7 +205,7 @@ DLP : Discrete logarithm problem : find s so that x = g^s mod m
 5. Key of A : Ka= ![\Large v^a](https://latex.codecogs.com/svg.latex?\Large&space;v^a) = ![\Large g^ba](https://latex.codecogs.com/svg.latex?\Large&space;g^ba) mod p
 <br/> => Ka = Kb 
 
-### ELGamal
+## ELGamal
 DLP : Discrete logarithm problem  
 <br/>
 
@@ -230,10 +230,10 @@ g: generator of Gq <br/>
 
 1. D(u,v) = v/u^k = m 
 
-## Hash
-Hash is used to garantee Integrity : We use non-bijective functions to hash the message 
-
-Examples of Hash functions : sha, sha256, md5 
+ Hash
+Hash is used to garantee Integrity : We use non-bijective functions to hash the message. <br/>
+Whatever the size of the real message, the size of a hash message is always the same.  <br/>
+**Examples of Hash functions** : sha, sha256, md5  <br/>
 
 - Hash a file 
 ```
@@ -241,9 +241,9 @@ $ asc25sum file
 $ md5sum file
 $ sha256sum file
 ```
-## OpenSSL
+# OpenSSL
 
-### Definition 
+## Definition 
 SSL  (Secure Sockets Layer)
 - Is an encryption-based protocol
 - Ensure confidentiality,,Authentication and Integrity 
@@ -255,7 +255,7 @@ OpenSSL is a software library for applications that secure communications over c
 It contains an open-source implementation of the SSL and TLS protocols. The core library, written in C programming language, implements basic cryptographic functions and provides various utility functions.
 
 
-### CMD 
+## CMD 
 
 - Encrypt the "file" with "aes-128-cbc" algorithm and put the result in "file.enc"
 ```ubuntu
@@ -306,7 +306,7 @@ openssl rsault -encrypt -pubin -inkey PUB -in file -out file.enc
 openssl rsautl -decrypt -inkey mykey.enc -in file -out rsa.enc 
 ```
 
-### Signature 
+## Signature 
 
 - Sign with the private key 
 ```
@@ -324,7 +324,7 @@ openssl rsault -verify -pubin -inkey PUB -in fileRSA.sign
 openssl dgst -sha256 -verify PUB -signature fileHashSign file 
 ```
 
-### Certificate 
+## Certificate 
 
 - Digital Certificates are verifiable small data files that contain identity credentials to help websites, people, and devices represent their authentic online identity.
 - Digital certificates cover three main uses: 
