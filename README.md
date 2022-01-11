@@ -179,13 +179,16 @@ Authentication Protocole
 This algo could easly be attacked by the Man in the midlle  
 
 **Solution**: <br/>
+
+- By adding b (prove the identity of b) , a will make sure if he is talking with b or with not
+
 <img src="https://github.com/rihemebh/Security-cheat-sheet/blob/main/The-Needham-Schroeder-Lowe-protocol-with-public-keys.png" /> 
 
 ## RSA
 NP-complete problem 
 
 **Parameters**: 
-1. choose 2 numbers p & q 
+1. choose 2 prime numbers p & q 
 2. N= p*q
 3. L = (p-1)*(q-1)
 4. Generate the public Key (e,N): e is between 1 and L and coprime with N and L
@@ -200,7 +203,7 @@ M = ![\Large C^d](https://latex.codecogs.com/svg.latex?\Large&space;C^d) mod N
 ## DH
 DLP : Discrete logarithm problem : find s so that x = g^s mod m 
 
-p and g are public infos 
+p (prime number) and g are public infos 
 
 **Algorithm**: A and B want to communicate with each other by sharing the same Key 
 1. A chooses a random number "a" between 0 and p-1
