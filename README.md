@@ -236,7 +236,7 @@ g: generator of Gq <br/>
 
 **Decryption**: 
 
-1. D(u,v) = v/u^k = m 
+1. D(u,v) = v/u^X = m 
 
 # Hash
 Hash is used to garantee Integrity : We use non-bijective functions to hash the message. <br/>
