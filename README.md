@@ -391,10 +391,7 @@ openssl req -new  -key gl4.key -out gl4.req
 ```
 openssl x509 -req -in gl4.req -out gl4.cert -CA INSAT.cert -CAKey INSAT.key -CAcreateserial -CAserial gl4.srl
 ```
-- Send the request 
-```
-openssl x509 -req -in gl4.dem out gl4.cert -CA INSAT.cert -CAkey INSAT.key -CAcreateserial -gl4.srl
-```
+
 - Export the certificate 
 ```
 openssl pkcs12 -export -out gl4.pfx -in gl4.cert -inkey gl4.key -name "certificat de gl4"
