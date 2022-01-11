@@ -196,6 +196,7 @@ M = ![\Large C^d](https://latex.codecogs.com/svg.latex?\Large&space;C^d) mod N
 ## DH
 DLP : Discrete logarithm problem : find s so that x = g^s mod m 
 
+p and g are public infos 
 
 **Algorithm**: A and B want to communicate with each other by sharing the same Key 
 1. A chooses a random number "a" between 0 and p-1
