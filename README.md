@@ -160,6 +160,8 @@ Authentication Protocole
 
 
 <img src="https://github.com/rihemebh/Security-cheat-sheet/blob/main/4-Figure2-1.png" /> 
+
+
 - pka : public key of na
 - pkb : pyblic key of nb 
 - Na / Nb : random numbers 
