@@ -268,9 +268,9 @@ openssl enc -aes-128-cbc -iter 2 -in file -out file.enc
 
 - Decrypt 
 ```
-openssl ecn -d -aes-128-cbc -in file.enc -out filerestored
+openssl enc -d -aes-128-cbc -in file.enc -out filerestored
 
-openssl ecn -d -aes-128-cbc  -iter 2 -in file.enc -out filerestored
+openssl enc -d -aes-128-cbc  -iter 2 -in file.enc -out filerestored
 ```
 
 - Generate RSA Key: 
