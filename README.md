@@ -158,8 +158,8 @@ gpg -o file --decrypt file.enc
 ## Needham-Schroeder
 Authentication Protocole 
 
-<img src="https://github.com/rihemebh/Security-cheat-sheet/blob/main/The-Needham-Schroeder-Lowe-protocol-with-public-keys.png" /> 
 
+<img src="https://github.com/rihemebh/Security-cheat-sheet/blob/main/4-Figure2-1.png" /> 
 - pka : public key of na
 - pkb : pyblic key of nb 
 - Na / Nb : random numbers 
@@ -176,6 +176,8 @@ Authentication Protocole
 
 This algo could easly be attacked by the Man in the midlle  
 
+**Solution**: <br/>
+<img src="https://github.com/rihemebh/Security-cheat-sheet/blob/main/The-Needham-Schroeder-Lowe-protocol-with-public-keys.png" /> 
 
 ## RSA
 NP-complete problem 
