@@ -40,7 +40,7 @@
 ```
 hostname -I
 ```
-- Connect remotely
+- Connect remotely via a private network 
 ```
 ssh <username>@<hostname>
 ```
@@ -200,18 +200,6 @@ NP-complete problem
 
 **Decryption** :
 M = ![\Large C^d](https://latex.codecogs.com/svg.latex?\Large&space;C^d) mod N
-## DH
-DLP : Discrete logarithm problem : find s so that x = g^s mod m 
-
-p (prime number) and g are public infos 
-
-**Algorithm**: A and B want to communicate with each other by sharing the same Key 
-1. A chooses a random number "a" between 0 and p-1
-2. B chooses a random number "b" between 0 and p-1
-3. u = ![\Large g^a](https://latex.codecogs.com/svg.latex?\Large&space;g^a) mod p (published by A) ; v= ![\Large g^b](https://latex.codecogs.com/svg.latex?\Large&space;g^b) mod p (published by B)
-4. Key of B : Kb= ![\Large u^b](https://latex.codecogs.com/svg.latex?\Large&space;u^b) = ![\Large g^ab](https://latex.codecogs.com/svg.latex?\Large&space;g^ab) mod p 
-5. Key of A : Ka= ![\Large v^a](https://latex.codecogs.com/svg.latex?\Large&space;v^a) = ![\Large g^ba](https://latex.codecogs.com/svg.latex?\Large&space;g^ba) mod p
-<br/> => Ka = Kb 
 
 ## ELGamal
 DLP : Discrete logarithm problem  
@@ -238,6 +226,22 @@ g: generator of Gq <br/>
 
 1. D(u,v) = v/u^X = m 
 
+## Hybrid Encryption 
+
+## DH
+DLP : Discrete logarithm problem : find s so that x = g^s mod m 
+
+p (prime number) and g are public infos 
+
+**Algorithm**: A and B want to communicate with each other by sharing the same Key 
+1. A chooses a random number "a" between 0 and p-1
+2. B chooses a random number "b" between 0 and p-1
+3. u = ![\Large g^a](https://latex.codecogs.com/svg.latex?\Large&space;g^a) mod p (published by A) ; v= ![\Large g^b](https://latex.codecogs.com/svg.latex?\Large&space;g^b) mod p (published by B)
+4. Key of B : Kb= ![\Large u^b](https://latex.codecogs.com/svg.latex?\Large&space;u^b) = ![\Large g^ab](https://latex.codecogs.com/svg.latex?\Large&space;g^ab) mod p 
+5. Key of A : Ka= ![\Large v^a](https://latex.codecogs.com/svg.latex?\Large&space;v^a) = ![\Large g^ba](https://latex.codecogs.com/svg.latex?\Large&space;g^ba) mod p
+<br/> => Ka = Kb 
+
+
 # Hash
 Hash is used to garantee Integrity : We use non-bijective functions to hash the message. <br/>
 Whatever the size of the real message, the size of a hash message is always the same.  <br/>
@@ -249,6 +253,8 @@ $ asc25sum file
 $ md5sum file
 $ sha256sum file
 ```
+
+
 # OpenSSL
 
 ## Definition 
