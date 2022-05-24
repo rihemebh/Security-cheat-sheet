@@ -1,6 +1,7 @@
 # Security
 - [0. Before we start](#before-we-start)
 - [1. Attacks](#attacks)
+- [2. Firewalls](#firewalls)
 - [2. Encryption](#encryption)
     - [2.1 Symmetric Encryption](#symmetric-encryption)
        - [2.1.0 Feistel](#feistel)
@@ -51,9 +52,21 @@ scp <filename> <username>@<hostname>:<path>
 |SQL Injection|SQL commands are inserted into data-plane input (for example, instead of the login or password) in order to run predefined SQL commands|“SELECT * FROM users WHERE account = ‘’ or ‘1’ = ‘1’;”<br/> Because ‘1’ = ‘1’ always evaluates to TRUE, the database will return the data for all users instead of just a single user.|
 |Cross-site scripting (XSS)|Use third-party web resources to run scripts in the victim’s web browser or scriptable application|<img src="https://github.com/rihemebh/Security-cheat-sheet/blob/main/xss.PNG"  />| 
 
+# Firewalls
+The major role of firewalls is:
+
+- Intercepting incoming traffic between network and trust levels
+- Authorizing or reject access 
+- Enabling a more secure connection to open networks
+- Audit network usage
 
 
+## Netfilter
+Netfilter is a Linux kernel module that provides the ability to monitor, modify and filter IP packets, and track connections. It thus provides firewall functions, Internet connection sharing and network traffic authorization.
+## IpTables
 
+IpTable in a  CMD interface to configure Netfilter
+### Commands 
 # Encryption
 Encryption is used to garantee Confidentiality 
 
@@ -234,7 +247,6 @@ g: generator of Gq <br/>
 ## Hybrid Encryption 
 
 ### DH
-DLP : Discrete logarithm problem : find s so that x = g^s mod m 
 
 p (prime number) and g are public infos 
 
@@ -251,13 +263,13 @@ p (prime number) and g are public infos
 Implementation : 
 
 # Elliptic Curve 
-DLP problem : finding the number k given a base point P where the point Q = kP. This is called the elliptic curve discrete logarithm problem, or ECDLP. (Instead of numbers, the elliptic curve’s problems operate on points, and multiplication is used instead of exponentiation.)
+ECC is based on the elliptic curve discrete logarithm problem, or (ECDLP), Instead of numbers, the elliptic curve’s problems operate on points, and multiplication is used instead of exponentiation : **Finding the number k given a base point P where the point Q = kP.**
+
 
 ## ECC Auth:
 
 The standard algorithm used for signing with ECC is ECDSA, which stands for elliptic curve digital signature algorithm. 
 This algorithm has replaced RSA signatures and classical DSA signatures in many applications. It is, for example, the only signature algorithm used in Bitcoin and is supported by many TLS and SSH implementations.
-
 
 
 
@@ -310,16 +322,16 @@ Elliptic curve cryptography is often viewed as an alternative to RSA for public-
 
 RSA is only used for encryption and signatures, whereas ECC is a family of algorithms that can be used to perform encryption, generate signatures, perform key agreement, and offer advanced cryptographic functionalities such as identity-based encryption.
 
-When comparing RSA and ECC’s signature algorithms, recall that in RSA signatures, the signer uses their private key **d** to compute a signature as y = x^d mod n, where x is the data to be signed and y is the signature.
-Verification uses the public key e to confirm that ye mod n equals x—a process that’s clearly simpler than that of ECDSA.
+The significant difference: 
+### => The same level of security with small numbers
 
+<img src="https://github.com/rihemebh/Security-cheat-sheet/blob/main/elliptic-curve-cryptography.png" width="500" height="250"  />
 
-### - The same level of security with small numbers
+ECC has two major advantages over RSA: **shorter signatures and signing speed.** 
 
-<img src="https://github.com/rihemebh/Security-cheat-sheet/blob/main/elliptic-curve-cryptography.png"  />
+Because ECC works with shorter numbers, it produces shorter signatures than RSA (hundreds of bits long, not thousands of bits), which is an obvious benefit if you have to store or transmit numerous signatures. 
 
-ECC has two major advantages over RSA: shorter signatures and signing speed. Because ECC works with shorter numbers, it produces shorter signatures than RSA
-(hundreds of bits long, not thousands of bits), which is an obvious benefit if you have to store or transmit numerous signatures. Signing with ECDSA is also much faster than signing with RSA (though signature verification is about as fast) because ECDSA works with much smaller numbers than RSA does for a similar security level.
+Signing with ECDSA is also much faster than signing with RSA (though signature verification is about as fast) because ECDSA works with much smaller numbers than RSA does for a similar security level.
 
 **Reference** : Serious Cryptography A Practical Introduction to Modern Encryption by --Jean-Philippe Aumasson 
 # Hash
