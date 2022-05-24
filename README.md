@@ -351,20 +351,22 @@ public Key P = dG
 
 The verifier only accepts the signature if the x coordinate of Q is equal to the value r from the signature.
 
+
+
 ## Encryption
 
-Given a recipient’s public key, P, ECIES encrypts a message M, as follows:
+We have: 
+(q ,G, G1, e), P un point de la CE E tq q divise p^k - 1
+n longueur du message
+H1 : (0, 1)* -> G*
+H2 : G1 -> (0, 1)^n 
+PKG : calcule P pub = rP
 
-1. Pick a random number **d**, and compute the point **Q = dG**, where the base point G is a fixed parameter. Here, (d, Q) acts as an ephemeral key pair, used only for encrypting M.
-2. Compute an ECDH shared secret: **S = dP**.
-3. Use a key derivation scheme (KDF) to derive a symmetric key K, from S.
-4. Encrypt M using K and a symmetric authenticated cipher, obtaining a ciphertext, C, and an authentication tag, T.
-The ECIES ciphertext then consists of the ephemeral public key Q followed by C and T.
 
+<img src="https://github.com/rihemebh/Security-cheat-sheet/blob/main/chiff.PNG" />
 ## Decryption
 
-The recipient computes S by multiplying R with their private exponent to obtain S, and then derives the key K and decrypts C and verifies T.
-
+<img src="https://github.com/rihemebh/Security-cheat-sheet/blob/main/dechiff.PNG" />
 ## RSA VS ECC
 
 Elliptic curve cryptography is often viewed as an alternative to RSA for public-key cryptography, but ECC and RSA don’t have much in common. 
