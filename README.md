@@ -51,6 +51,7 @@ scp <filename> <username>@<hostname>:<path>
 |Man in the middle|occurs when a hacker inserts itself between the communications of a client and a server|Session hijacking <br/> <img src="https://github.com/rihemebh/Security-cheat-sheet/blob/main/mitm%201.PNG" /> <br/> <img src="https://github.com/rihemebh/Security-cheat-sheet/blob/main/mitm%202.PNG" />|
 |SQL Injection|SQL commands are inserted into data-plane input (for example, instead of the login or password) in order to run predefined SQL commands|“SELECT * FROM users WHERE account = ‘’ or ‘1’ = ‘1’;”<br/> Because ‘1’ = ‘1’ always evaluates to TRUE, the database will return the data for all users instead of just a single user.|
 |Cross-site scripting (XSS)|Use third-party web resources to run scripts in the victim’s web browser or scriptable application|<img src="https://github.com/rihemebh/Security-cheat-sheet/blob/main/xss.PNG"  />| 
+|Ransomware|Ransomware is a type of malware from cryptovirology that threatens to publish the victim's personal data or perpetually block access to it unless a ransom is paid. While some simple ransomware may lock the system without damaging any files, more advanced malware uses a technique called cryptoviral extortion.|
 
 # Firewalls
 The major role of firewalls is:
@@ -308,8 +309,26 @@ p (prime number) and g are public infos
 <br/> => Ka = Kb 
 
 # Kerberos
+it is responsible for authenticating, authorizing and monitoring users who want to access resources and services on your network. It acts as a watchdog against intruders on your network services.
 
-Implementation : 
+Based on 
+- “Ticket” Granting
+- Secret Key Cryptography
+- Mutual authentication
+- Time-limited tickets
+- Anti-replay mechanisms
+
+- It is based on 3 tiers architecture : 
+   - Client/user : Who wants to access a resource from the server
+   - Ressources server : the machine that has resources 
+   - KDC: Key Distribution Center: Grant ticket for users allowed to access a service
+   
+**Principal** : Each user and service on the network is a principal. 
+
+
+
+
+Implementation : https://github.com/rihemebh/Kerberos-project
 
 # Elliptic Curve 
 ECC is based on the elliptic curve discrete logarithm problem, or (ECDLP), Instead of numbers, the elliptic curve’s problems operate on points, and multiplication is used instead of exponentiation : **Finding the number k given a base point P where the point Q = kP.**
@@ -356,17 +375,22 @@ The verifier only accepts the signature if the x coordinate of Q is equal to the
 ## Encryption
 
 We have: 
-(q ,G, G1, e), P un point de la CE E tq q divise p^k - 1
-n longueur du message
-H1 : (0, 1)* -> G*
-H2 : G1 -> (0, 1)^n 
-PKG : calcule P pub = rP
+- (q ,G, G1, e), P un point de la CE E tq q divise p^k - 1
+- n longueur du message
+- H1 : (0, 1)* -> G*
+- H2 : G1 -> (0, 1)^n 
+- PKG : calcule P pub = rP
 
 
 <img src="https://github.com/rihemebh/Security-cheat-sheet/blob/main/chiff.PNG" />
+
+
 ## Decryption
 
 <img src="https://github.com/rihemebh/Security-cheat-sheet/blob/main/dechiff.PNG" />
+
+
+
 ## RSA VS ECC
 
 Elliptic curve cryptography is often viewed as an alternative to RSA for public-key cryptography, but ECC and RSA don’t have much in common. 
