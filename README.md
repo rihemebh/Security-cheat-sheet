@@ -1,16 +1,19 @@
 # Security
 - [0. Before we start](#before-we-start)
-- [1. Encryption](#encryption)
-    - [1.1 Symmetric Encryption](#symmetric-encryption)
-       - [1.1.0 Feistel](#feistel)
-    - [1.2 Asymmetric Encryption](#asymmetric-encryption)
-      - [1.2.0 Needham-Schroeder](#needham-schroeder)
-      - [1.2.1 RSA](#rsa)
-      - [1.2.2 Diffie Hellman (DH)](#dh)
-      - [1.2.3 ELGamal](#elgamal)
-    
-- [2. Hash](#hash)
-- [3. OpenSSL](#openssl)
+- [1. Attacks](#attacks)
+- [2. Encryption](#encryption)
+    - [2.1 Symmetric Encryption](#symmetric-encryption)
+       - [2.1.0 Feistel](#feistel)
+    - [2.2 Asymmetric Encryption](#asymmetric-encryption)
+      - [2.2.0 Needham-Schroeder](#needham-schroeder)
+      - [2.2.1 RSA](#rsa)
+      - [2.2.2 ELGamal](#elgamal)
+   - [2.3 Hybrid Encryption](#hybrid-encryption)
+      - [3.3.1 Diffie Hellman (DH)](#dh)    
+- [3. Hash](#hash)
+- [4. Kerberos](#kerberos)
+- [5. Elliptic Curve](#elliptic-curve)
+- [6. OpenSSL](#openssl)
 # Before we start 
 ## Some important notions
 |name|description|
@@ -22,17 +25,7 @@
 |FootPrint|Recognition|
 |Integrity|Ensuring that information cannot be changed|
 |Confidentiality|Ensuring that information can be accessed (read) only by authorized persons|
-
-## Attacks 
-|Attack|Description|Example|
-|---|---|---|
-|Birthday Attack|It is made against the Hash algorithms. (Belongs to a class of brute force)  <br/> All hashed messages have a fixed length (independent from the input length) and they unique for that message. this attack refers to the probability of finding two random messages m1 and m2 that has the same Hash h(m1) = h(m2) so the attacker can safely replace the message by his own one|What is the relation with the birthday: <br/> Since we have a finite number of days in one year (365) there is a big chance to have 2 persons with the same birthday in a finite number of persons.|
-|Password attack|Trying to guess the password or having a databse of passwords called dictionnary|- **Brute Force** : using a random approach by trying different passwords and hoping that one work Some logic can be applied by trying passwords related to the person’s name, job title, hobbies or similar items. <br/> - **Dictionary attack**: dictionary of common passwords is used to attempt to gain access to a user’s computer and network. One approach is to copy an encrypted file that contains the passwords, apply the same encryption to a dictionary of commonly used passwords, and compare the results.|
-|Man in the middle|occurs when a hacker inserts itself between the communications of a client and a server|Session hijacking <br/> <img src="https://github.com/rihemebh/Security-cheat-sheet/blob/main/mitm%201.PNG" /> <br/> <img src="https://github.com/rihemebh/Security-cheat-sheet/blob/main/mitm%202.PNG" />|
-|SQL Injection|SQL commands are inserted into data-plane input (for example, instead of the login or password) in order to run predefined SQL commands|“SELECT * FROM users WHERE account = ‘’ or ‘1’ = ‘1’;”<br/> Because ‘1’ = ‘1’ always evaluates to TRUE, the database will return the data for all users instead of just a single user.|
-|Cross-site scripting (XSS)|Use third-party web resources to run scripts in the victim’s web browser or scriptable application|<img src="https://github.com/rihemebh/Security-cheat-sheet/blob/main/xss.PNG"  />| 
-
-
+|DLP| Discret Logarithm Problem : finding the number y where x = g^y mod, g is given and p is a large prime number |
 
 ## Frequently used CMDs
 ``gpg`` :  is the cmd for encryption 
@@ -48,6 +41,18 @@ ssh <username>@<hostname>
 ```
 scp <filename> <username>@<hostname>:<path>
 ```
+
+# Attacks 
+|Attack|Description|Example|
+|---|---|---|
+|Birthday Attack|It is made against the Hash algorithms. (Belongs to a class of brute force)  <br/> All hashed messages have a fixed length (independent from the input length) and they unique for that message. this attack refers to the probability of finding two random messages m1 and m2 that has the same Hash h(m1) = h(m2) so the attacker can safely replace the message by his own one|What is the relation with the birthday: <br/> Since we have a finite number of days in one year (365) there is a big chance to have 2 persons with the same birthday in a finite number of persons.|
+|Password attack|Trying to guess the password or having a databse of passwords called dictionnary|- **Brute Force** : using a random approach by trying different passwords and hoping that one work Some logic can be applied by trying passwords related to the person’s name, job title, hobbies or similar items. <br/> - **Dictionary attack**: dictionary of common passwords is used to attempt to gain access to a user’s computer and network. One approach is to copy an encrypted file that contains the passwords, apply the same encryption to a dictionary of commonly used passwords, and compare the results.|
+|Man in the middle|occurs when a hacker inserts itself between the communications of a client and a server|Session hijacking <br/> <img src="https://github.com/rihemebh/Security-cheat-sheet/blob/main/mitm%201.PNG" /> <br/> <img src="https://github.com/rihemebh/Security-cheat-sheet/blob/main/mitm%202.PNG" />|
+|SQL Injection|SQL commands are inserted into data-plane input (for example, instead of the login or password) in order to run predefined SQL commands|“SELECT * FROM users WHERE account = ‘’ or ‘1’ = ‘1’;”<br/> Because ‘1’ = ‘1’ always evaluates to TRUE, the database will return the data for all users instead of just a single user.|
+|Cross-site scripting (XSS)|Use third-party web resources to run scripts in the victim’s web browser or scriptable application|<img src="https://github.com/rihemebh/Security-cheat-sheet/blob/main/xss.PNG"  />| 
+
+
+
 
 # Encryption
 Encryption is used to garantee Confidentiality 
@@ -228,7 +233,7 @@ g: generator of Gq <br/>
 
 ## Hybrid Encryption 
 
-## DH
+### DH
 DLP : Discrete logarithm problem : find s so that x = g^s mod m 
 
 p (prime number) and g are public infos 
@@ -241,7 +246,82 @@ p (prime number) and g are public infos
 5. Key of A : Ka= ![\Large v^a](https://latex.codecogs.com/svg.latex?\Large&space;v^a) = ![\Large g^ba](https://latex.codecogs.com/svg.latex?\Large&space;g^ba) mod p
 <br/> => Ka = Kb 
 
+# Kerberos
 
+Implementation : 
+
+# Elliptic Curve 
+DLP problem : finding the number k given a base point P where the point Q = kP. This is called the elliptic curve discrete logarithm problem, or ECDLP. (Instead of numbers, the elliptic curve’s problems operate on points, and multiplication is used instead of exponentiation.)
+
+## ECC Auth:
+
+The standard algorithm used for signing with ECC is ECDSA, which stands for elliptic curve digital signature algorithm. 
+This algorithm has replaced RSA signatures and classical DSA signatures in many applications. It is, for example, the only signature algorithm used in Bitcoin and is supported by many TLS and SSH implementations.
+
+
+
+
+## Signature generation
+
+### Parameters:
+n is the number of point in the curve 
+
+G = (x,y) is a base point 
+
+private key = d 
+
+public Key P = dG
+
+### Algorithm:
+
+1. Hash a message (SHA-256 or BLAKE2) ⇒ generate h between 0 and n-1
+2. Pick a random number k between 1 and n-1
+3. compute kG
+4. set r = x mod n 
+5. compute s = (h+rd)/ k mod n 
+6. signature = (r,s)
+
+## Signature Verification
+
+1. compute w = 1/s  = k / (h+rd) mod n
+2. wh = hk(h+rd) = u 
+3. wr = rk(h+rd) = v
+4. Q = uG + vP 
+
+The verifier only accepts the signature if the x coordinate of Q is equal to the value r from the signature.
+
+## Encryption
+
+Given a recipient’s public key, P, ECIES encrypts a message M, as follows:
+
+1. Pick a random number **d**, and compute the point **Q = dG**, where the base point G is a fixed parameter. Here, (d, Q) acts as an ephemeral key pair, used only for encrypting M.
+2. Compute an ECDH shared secret: **S = dP**.
+3. Use a key derivation scheme (KDF) to derive a symmetric key K, from S.
+4. Encrypt M using K and a symmetric authenticated cipher, obtaining a ciphertext, C, and an authentication tag, T.
+The ECIES ciphertext then consists of the ephemeral public key Q followed by C and T.
+
+## Decryption
+
+The recipient computes S by multiplying R with their private exponent to obtain S, and then derives the key K and decrypts C and verifies T.
+
+## RSA VS ECC
+
+Elliptic curve cryptography is often viewed as an alternative to RSA for public-key cryptography, but ECC and RSA don’t have much in common. 
+
+RSA is only used for encryption and signatures, whereas ECC is a family of algorithms that can be used to perform encryption, generate signatures, perform key agreement, and offer advanced cryptographic functionalities such as identity-based encryption.
+
+When comparing RSA and ECC’s signature algorithms, recall that in RSA signatures, the signer uses their private key **d** to compute a signature as y = x^d mod n, where x is the data to be signed and y is the signature.
+Verification uses the public key e to confirm that ye mod n equals x—a process that’s clearly simpler than that of ECDSA.
+
+
+### - The same level of security with small numbers
+
+<img src="https://github.com/rihemebh/Security-cheat-sheet/blob/main/elliptic-curve-cryptography.png"  />
+
+ECC has two major advantages over RSA: shorter signatures and signing speed. Because ECC works with shorter numbers, it produces shorter signatures than RSA
+(hundreds of bits long, not thousands of bits), which is an obvious benefit if you have to store or transmit numerous signatures. Signing with ECDSA is also much faster than signing with RSA (though signature verification is about as fast) because ECDSA works with much smaller numbers than RSA does for a similar security level.
+
+**Reference** : Serious Cryptography A Practical Introduction to Modern Encryption by --Jean-Philippe Aumasson 
 # Hash
 Hash is used to garantee Integrity : We use non-bijective functions to hash the message. <br/>
 Whatever the size of the real message, the size of a hash message is always the same.  <br/>
