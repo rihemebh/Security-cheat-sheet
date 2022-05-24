@@ -67,6 +67,55 @@ Netfilter is a Linux kernel module that provides the ability to monitor, modify 
 
 IpTable in a  CMD interface to configure Netfilter
 ### Commands 
+The commands tells iptables what to do with the rest of the rule that is sent to the interpreter.
+
+The chain's name : INPUT 
+- Rules' List
+```shell
+iptable -L --line-numbers
+```
+
+- Create a Chain (named allowed)
+```shell
+iptables -N allowed
+```
+- Erase a chain 
+```shell
+iptables -X allowed
+```
+
+- Modify the authorization 
+```shell
+iptables -P INPUT DROP
+```
+- Add rule to end of the chain
+```shell
+iptables -A INPUT
+```
+- Drop rule
+```shell
+iptables -D INPUT --dport 80 -j DROP, iptables -D INPUT 1
+```
+- Replace a rule 
+```shell
+iptables -R INPUT 1 -s 192.168.0.1 -j DROP
+```
+- Insert a rule anywhere
+```shell
+iptables -I INPUT 1 --dport 80 -j ACCEPT
+```
+- Clear the chain's rules
+```shell
+iptables -F INPUT
+```
+- Reset thz chain's counters 
+```shell
+iptables -Z INPUT
+```
+- 
+```shell
+```
+
 # Encryption
 Encryption is used to garantee Confidentiality 
 
